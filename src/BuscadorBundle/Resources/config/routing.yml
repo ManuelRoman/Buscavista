@@ -1,0 +1,15 @@
+buscador_homepage:
+    path:     /
+    defaults: { _controller: BuscadorBundle:Default:index }
+
+buscador_buscar:
+    path:     /buscar
+    defaults: { _controller: BuscadorBundle:Buscar:buscar }
+
+buscador_resultados:
+    path:     /resultados
+    defaults: { _controller: BuscadorBundle:Buscar:resultados }
+    
+buscador_entrada:
+    path:     /resultados/{id}
+    defaults: { _controller: BuscadorBundle:Buscar:mostrarEntrada }

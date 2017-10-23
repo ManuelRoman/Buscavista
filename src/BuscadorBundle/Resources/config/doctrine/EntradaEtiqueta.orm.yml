@@ -1,0 +1,41 @@
+BuscadorBundle\Entity\EntradaEtiqueta:
+    type: entity
+    table: entradas_etiquetas
+    indexes:
+        fk_entradas:
+            columns:
+                - entrada_id
+        fk_etiquetas:
+            columns:
+                - etiqueta_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    manyToOne:
+        entrada:
+            targetEntity: Entrada
+            cascade: {  }
+            fetch: EAGER
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                entrada_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        etiqueta:
+            targetEntity: Etiqueta
+            cascade: {  }
+            fetch: EAGER
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                etiqueta_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,24 @@
+{% extends "BuscadorBundle::base.html.twig" %}
+{% block title %} BuscaVista - Resultados {% endblock %}
+{% block content %}
+	<div class="row">
+    	<div class="col">
+    	{% if entradas is empty %}
+			<div class="text-center">
+				<p>No hay resultados para esta búsqueda</p>
+			</div>
+		{% else %}    		
+           	{% for entrada in entradas %}
+           		<div>
+           			<a href="{{ path("buscador_entrada", {"id":entrada.id}) }}">{{ entrada.titulo }}</a>
+           			<p>{{ entrada.contenido|truncate(10, true) }}</p>
+           		</div>
+        	    {% endfor %}
+        {% endif %}
+    		<div class="text-center">
+    			<p><a href="{{ path("buscador_buscar") }}" class="btn btn-primary">Volver a incio</a></p>
+    		</div>
+        	{{ dump(entradas) }}
+        </div>
+    </div>
+{% endblock %}

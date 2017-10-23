@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html lang=es>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+		<title>
+			{% block title %} BuscaVista {% endblock %}
+		</title>
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+		<style>
+		  body{
+		      /*background-color: #557187;*/
+		   }
+          </style>
+	</head>
+	<body>
+		<div class="container">
+    		<header><br/>
+				<nav class="navbar navbar-default">
+                  <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                      </button>
+                      <a class="navbar-brand" href="#">BuscaVista - Administación</a>
+                    </div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                      <ul class="nav navbar-nav">
+                      	{% if app.user != null %}
+                            <li><a href="#">Añadir entradas</a></li>
+            			    <li><a href="#">Editar entradas</a></li>
+                      		<li><a href="#">Añadir etiquetas</a></li>
+                        {% endif %}
+                      </ul>
+                      <ul class="nav navbar-nav navbar-right">  
+                      	<li><a href="#">
+                      		{% if app.user !=null %}
+                      			Bienvenido, {{ app.user.nombre }} {{ app.user.apellido }}
+                      		{% endif %}
+                      		</a>
+                      	</li>     
+                        <li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-align-justify"></span><span class="caret"></span></a>
+                          <ul class="dropdown-menu">
+                            {% if app.user == null %}
+                            	<li><a href="{{ path("login")  }}">Entrar</a></li>
+                			{% else %}
+                				{% if is_granted('ROLE_SUPER_ADMIN') %}
+                    				<li><a href="{{ path("crear_admin") }}">Añadir administrador</a></li>
+            			        	<li><a href="#">Editar administrador</a></li>
+                      				<li><a href="#">Borrar administrador</a></li>
+                      			{% endif %}
+                  				<li role="separator" class="divider"></li>
+								<li><a href="{{ path("logout") }}">Salir</a></li>
+                	        {% endif %}
+                          </ul>
+                        </li>
+                      </ul>
+                    </div><!-- /.navbar-collapse -->
+                  </div><!-- /.container-fluid -->
+                </nav>
+		</header>
+        	<section>
+    			{% block content %}{% endblock %}
+        	</section>
+        </div>
+	</body>
+</html>

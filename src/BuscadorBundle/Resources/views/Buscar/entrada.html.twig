@@ -1,0 +1,18 @@
+{% extends "BuscadorBundle::base.html.twig" %}
+{% block title %} BuscaVista - Detalle entrada {% endblock %}
+{% block content %}
+	<div class="row"><div class="col"><br/></div></div>
+	<div class="row">
+    	<div class="col">
+    		<div><br/>
+    			<p class="text-center"></span><img width="400" src="{{ asset("imagenes/"~entrada.imagen1)}}"/></p>
+    			<p>{{ entrada.titulo }}</p>
+    			<p>{{ entrada.contenido }}</p>
+    		</div>
+    		<div class="text-center">
+    			<input type="button" value="Volver a resultados" onclick="history.back(-1)" class="btn btn-default"/>
+    		</div>
+        	{{ dump(entrada) }}
+        </div>
+    </div>
+{% endblock %}

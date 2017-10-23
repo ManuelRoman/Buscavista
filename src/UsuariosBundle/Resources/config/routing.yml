@@ -1,0 +1,21 @@
+usuarios_homepage:
+    path:     /admin
+    defaults: { _controller: UsuariosBundle:Default:index }
+    
+login:
+    path: /login
+    defaults: { _controller: UsuariosBundle:Usuario:login}
+    
+login_check:
+    path: /login_check
+    
+logout:
+    path: /logout
+
+inicio:
+    path: /admin/inicio
+    defaults: { _controller: UsuariosBundle:Usuario:inicio}
+    
+crear_admin:
+    path: /admin/crear
+    defaults: { _controller: UsuariosBundle:Usuario:creaAdmin}

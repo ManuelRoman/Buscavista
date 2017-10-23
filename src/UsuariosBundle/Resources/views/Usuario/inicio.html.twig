@@ -1,0 +1,12 @@
+{% extends "UsuariosBundle::base.html.twig" %}
+{% block content %}
+	<div class="row">
+    	<div class="col-md-8 col-md-offset-2">
+        	{# Mensaje FlashBag #}
+        	{% for message in app.session.flashbag().get('status') %}
+        		<div class="alert alert-success">{{ message }}</div>
+        	{% endfor %}
+        	<div class="text-center"><p>Puede iniciar una acción</p></div>
+        </div>
+	</div>
+{% endblock %}
