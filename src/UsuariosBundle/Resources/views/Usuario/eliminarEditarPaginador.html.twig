@@ -1,0 +1,37 @@
+{% extends "UsuariosBundle::base.html.twig" %}
+{% block content %}
+	<div class=row>
+    	<div class="col-md-6 col-md-offset-3">
+            <h2>Eliminar/Editar administrador</h2>
+            {% for message in app.session.flashbag().get('status') %}
+        		<div class="alert alert-success">{{ message }}</div>
+            {% endfor %}
+            <table class="table table-hover">
+            {# organización de resultados de acuerdo a lo que viene de la query #}
+        		<tr>
+        			<th{% if pagination.isSorted('u.Nombre') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Nombre', 'u.nombre') }}</th>
+            		<th{% if pagination.isSorted('u.Apellido') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Apellido', 'u.apellido') }}</th>
+            		<th{% if pagination.isSorted('u.Email') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Email', 'u.email') }}</th>
+            		<th>Editar</th>
+        			<th>Eliminar</th>
+        		</tr>
+        		{# cuerpo de la tabla con los resultados obteniéndolos del result del controller #}
+                {% for administrador in pagination %}
+            	<tr {% if loop.index is odd %}class="color"{% endif %}>
+                	<td>{{ administrador.nombre }}</td>
+                	<td>{{ administrador.apellido }}</td>
+            		<td>{{ administrador.email }}</td>
+            		<td>
+            			<a href="{{ path("editar_admin", {"id":administrador.id}) }}" class="btn btn-warning">Editar</a>
+            		</td>
+            		<td>
+            			<a href="{{ path("eliminar_admin", {"id":administrador.id}) }}" class="btn btn-danger">Eliminar</a>
+            		</td>
+            	</tr>
+                {% endfor %}
+        	</table>
+        	{# Muestra botones de navegación #}
+    		<div class="navigation">{{ knp_pagination_render(pagination) }}</div>
+        </div>
+    </div>
+{% endblock %}

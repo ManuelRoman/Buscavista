@@ -19,3 +19,15 @@ inicio:
 crear_admin:
     path: /admin/crear
     defaults: { _controller: UsuariosBundle:Usuario:creaAdmin}
+
+listar_admins:
+    path: /admin/listar
+    defaults: { _controller: UsuariosBundle:Usuario:listarAdmins}
+        
+eliminar_admin:
+    path: /admin/eliminar/{id}
+    defaults: { _controller: UsuariosBundle:Usuario:eliminarAdmin}
+    
+editar_admin:
+    path: /admin/editar/{id}
+    defaults: { _controller: UsuariosBundle:Usuario:editarAdmin}

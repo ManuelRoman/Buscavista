@@ -55,8 +55,7 @@
                 			{% else %}
                 				{% if is_granted('ROLE_SUPER_ADMIN') %}
                     				<li><a href="{{ path("crear_admin") }}">Añadir administrador</a></li>
-            			        	<li><a href="#">Editar administrador</a></li>
-                      				<li><a href="#">Borrar administrador</a></li>
+                      				<li><a href="{{ path("listar_admins") }}">Eliminar/eliminar administrador</a></li>
                       			{% endif %}
                   				<li role="separator" class="divider"></li>
 								<li><a href="{{ path("logout") }}">Salir</a></li>
