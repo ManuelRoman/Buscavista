@@ -1,6 +1,6 @@
 <?php
 
-namespace UsuariosBundle\Entity;
+namespace BuscadorBundle\Entity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**

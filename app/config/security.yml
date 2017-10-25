@@ -2,14 +2,14 @@
 # https://symfony.com/doc/current/security.html
 security:
     encoders:
-        UsuariosBundle\Entity\Usuario:
+        BuscadorBundle\Entity\Usuario:
             algorithm: bcrypt
             cost: 6
     # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
         our_db_provider:
             entity:
-                class: UsuariosBundle:Usuario
+                class: BuscadorBundle:Usuario
                 property: email
 
     firewalls:

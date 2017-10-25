@@ -1,11 +1,11 @@
 <?php
 
-namespace UsuariosBundle\Controller;
+namespace BuscadorBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use UsuariosBundle\Entity\Usuario;
-use UsuariosBundle\Form\UsuarioType;
+use BuscadorBundle\Entity\Usuario;
+use BuscadorBundle\Form\UsuarioType;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 class UsuarioController extends Controller
@@ -27,14 +27,14 @@ class UsuarioController extends Controller
         }
         
         //Mandamos a la vista el usuario y/o error
-        return $this->render('UsuariosBundle:Usuario:login.html.twig', array(
+        return $this->render('BuscadorBundle:Usuario:login.html.twig', array(
             "last_username" => $lastUsername
         ));
     }
     
     public function inicioAction(Request $request)
     {
-        return $this->render('UsuariosBundle:Usuario:inicio.html.twig');
+        return $this->render('BuscadorBundle:Usuario:inicio.html.twig');
     }
     
     public function  creaAdminAction(Request $request){
@@ -45,7 +45,7 @@ class UsuarioController extends Controller
             if($form->isValid()){
                 $em = $this->getDoctrine()->getManager();
                 //Comprobamos si el email ya esta registrado
-                $usuario_repository=$em->getRepository("UsuariosBundle:Usuario");
+                $usuario_repository=$em->getRepository("BuscadorBundle:Usuario");
                 $usuario = $usuario_repository->findOneBy(array("email"=>$form->get("email")->getData()));
                 if(count($usuario)==0){
                     $usuario = new Usuario();
@@ -75,7 +75,7 @@ class UsuarioController extends Controller
             }
         }
         
-        return $this->render("UsuariosBundle:Usuario:crear.html.twig", array(
+        return $this->render("BuscadorBundle:Usuario:crear.html.twig", array(
             "form" =>$form->createView()
         ));
         
@@ -87,9 +87,9 @@ class UsuarioController extends Controller
      */
     public function listarAdmins2Action(){
         $em = $this->getDoctrine()->getManager();
-        $usuario_repository=$em->getRepository("UsuariosBundle:Usuario");
+        $usuario_repository=$em->getRepository("BuscadorBundle:Usuario");
         $administradores = $usuario_repository->findBy(array('role' => 'ROLE_ADMIN'));
-        return $this->render("UsuariosBundle:Usuario:eliminarEditar.html.twig", array(
+        return $this->render("BuscadorBundle:Usuario:eliminarEditar.html.twig", array(
             "administradores" =>$administradores
         ));
     }
@@ -97,7 +97,7 @@ class UsuarioController extends Controller
     public function listarAdminsAction(Request $request){
         $em = $this->getDoctrine()->getManager();
         //Realizamos la consulta a bbdd
-        $dql   = "SELECT u FROM UsuariosBundle:Usuario u";
+        $dql   = "SELECT u FROM BuscadorBundle:Usuario u";
         $query = $em->createQuery($dql);
         
         //creamos el $paginator que llama el método get de KnpPaginatorBundle
@@ -108,14 +108,14 @@ class UsuarioController extends Controller
             $request->query->get('page', 1), //número de página por la que empieza
             3 // límite de resultados por página
             );
-        return $this->render('UsuariosBundle:Usuario:eliminarEditarPaginador.html.twig', array(
+        return $this->render('BuscadorBundle:Usuario:eliminarEditarPaginador.html.twig', array(
             'pagination' => $pagination
         ));
     }
     
     public function eliminarAdminAction(Request $request, $id){
         $em = $this->getDoctrine()->getManager();
-        $usuario_repository=$em->getRepository("UsuariosBundle:Usuario");
+        $usuario_repository=$em->getRepository("BuscadorBundle:Usuario");
         $usuario = $usuario_repository->find($id);
         $em->remove($usuario);
         $flush = $em->flush();
@@ -125,12 +125,12 @@ class UsuarioController extends Controller
             $status = "Error al eliminar el administrador.";
         }
         $this->session->getFlashBag()->add("status", $status);
-        return $this->render("UsuariosBundle:Usuario:inicio.html.twig");
+        return $this->render("BuscadorBundle:Usuario:inicio.html.twig");
     }
     
     public function editarAdminAction(Request $request, $id){
         $em = $this->getDoctrine()->getManager();
-        $usuario_repository=$em->getRepository("UsuariosBundle:Usuario");
+        $usuario_repository=$em->getRepository("BuscadorBundle:Usuario");
         $usuario = $usuario_repository->find($id);
         
         //Creamos el formularío y le damos el usuario, nos rellena los campos en la vista
@@ -168,7 +168,7 @@ class UsuarioController extends Controller
             return $this->redirectToRoute("inicio");
         }
         
-        return $this->render("UsuariosBundle:Usuario:formularioEditar.html.twig", array(
+        return $this->render("BuscadorBundle:Usuario:formularioEditar.html.twig", array(
             "form" =>$form->createView()
         ));
     }

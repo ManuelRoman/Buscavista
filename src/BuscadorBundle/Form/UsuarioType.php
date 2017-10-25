@@ -1,6 +1,6 @@
 <?php
 
-namespace UsuariosBundle\Form;
+namespace BuscadorBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -53,7 +53,7 @@ class UsuarioType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'UsuariosBundle\Entity\Usuario'
+            'data_class' => 'BuscadorBundle\Entity\Usuario'
         ));
     }
 
@@ -62,7 +62,7 @@ class UsuarioType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'usuariosbundle_usuario';
+        return 'buscadorbundle_usuario';
     }
 
 
