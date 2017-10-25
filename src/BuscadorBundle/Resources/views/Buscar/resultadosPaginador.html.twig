@@ -1,0 +1,38 @@
+{% extends "BuscadorBundle::baseBuscador.html.twig" %}
+{% block title %} BuscaVista - Resultados {% endblock %}
+{% block content %}
+	<div class=row>
+    	<div class="col-md-8 col-md-offset-2">
+            {% for message in app.session.flashbag().get('status') %}
+        		<div class="alert alert-success">{{ message }}</div>
+            {% endfor %}
+            {% if pagination.getTotalItemCount > 0 %}
+                {# total items count #}
+                <span class="text-center">
+            		<div class="count">
+                		<span class="label label-primary">
+                    		Se han encontrado: {{ pagination.getTotalItemCount }} resultado(s)
+                		</span>
+            		</div>
+        		</span><br/>
+                {% for entrada in pagination %}
+                	<div>
+               			<a href="{{ path("buscador_entrada", {"id":entrada.id}) }}">{{ entrada.titulo }}</a>
+               			<p>{{ entrada.contenido|truncate(10, true) }}</p>
+               		</div>
+                {% endfor %}
+            	{# Muestra botones de navegación #}
+            	<span class="text-center">
+        		<div class="navigation">{{ knp_pagination_render(pagination) }}</div>
+        		</span>
+        	{% else %}
+        		<div class="text-center">
+				<p>No hay resultados para esta búsqueda</p>
+				</div>
+			{% endif %}
+			<div class="text-center">
+    			<p><a href="{{ path("buscador_buscar") }}" class="btn btn-primary">Volver a incio</a></p>
+    		</div>
+        </div>
+    </div>
+{% endblock %}

@@ -20,7 +20,12 @@ class BuscarController extends Controller
         ));
     }
     
-    public function resultadosAction(Request $request){
+    /**
+     * Método de búsqueda sin paginación
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function resultados2Action(Request $request){
         $datos = $request->get('form');
         $em = $this->getDoctrine()->getManager();
         $entrada_repository = $em->getRepository("BuscadorBundle:Entrada");
@@ -42,6 +47,36 @@ class BuscarController extends Controller
         
         return $this->render('BuscadorBundle:Buscar:resultados.html.twig', array(
             'entradas' => $entradas,
+        ));
+    }
+    
+    public function resultadosAction(Request $request){
+        $datos = $request->get('form');
+        $em = $this->getDoctrine()->getManager();
+        $entrada_repository = $em->getRepository("BuscadorBundle:Entrada");
+        $etiqueta_repository = $em->getRepository("BuscadorBundle:Etiqueta");
+        
+        $etiquetas = explode(" ", strtolower($datos["terminos"]));
+        $etiquetasValidas = [];
+        for($i=0; $i<count($etiquetas); $i++) {
+            if (strlen($etiquetas[$i]) >2){
+                $etiquetasValidas[] = $etiquetas[$i];
+            }
+        }
+        
+        $entradas = $entrada_repository->buscarEntradas($etiquetasValidas);
+        $etiqueta_repository->sumaBusqueda($etiquetasValidas);
+        
+        //creamos el $paginator que llama el método get de KnpPaginatorBundle
+        $paginator  = $this->get('knp_paginator');
+        //le pasamos a $paginator los parámetros y los asignamos a $pagination
+        $pagination = $paginator->paginate(
+            $entradas, //origen de los datos
+            $request->query->get('page', 1), //número de página por la que empieza
+            5 // límite de resultados por página
+            );
+        return $this->render('BuscadorBundle:Buscar:resultadosPaginador.html.twig', array(
+            'pagination' => $pagination
         ));
     }
     

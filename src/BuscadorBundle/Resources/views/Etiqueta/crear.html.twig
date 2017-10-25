@@ -1,0 +1,13 @@
+{% extends "BuscadorBundle::baseAdmin.html.twig" %}
+{% block content %}
+	<div class="col-md-6 col-md-offset-3">
+        <h2>Crear etiqueta</h2>
+        {% for message in app.session.flashbag().get('status') %}
+    		<div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+        {{ form_start(form) }}
+        	{{ form_errors(form) }}
+	        {{ form_widget(form) }}
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

@@ -43,3 +43,7 @@ eliminar_admin:
 editar_admin:
     path: /admin/editar/{id}
     defaults: { _controller: BuscadorBundle:Usuario:editarAdmin}
+    
+crear_etiqueta:
+    path: /etiqueta/crear
+    defaults: { _controller: BuscadorBundle:Etiqueta:crearEtiqueta}
