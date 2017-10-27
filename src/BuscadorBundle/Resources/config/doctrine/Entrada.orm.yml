@@ -30,6 +30,16 @@ BuscadorBundle\Entity\Entrada:
             length: 255
             options:
                 fixed: false
+        latitud:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 7
+        longitud:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 7
         preferencia:
             type: integer
             nullable: true

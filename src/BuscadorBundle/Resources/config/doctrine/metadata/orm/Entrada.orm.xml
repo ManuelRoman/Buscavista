@@ -19,6 +19,8 @@
         <option name="fixed"/>
       </options>
     </field>
+    <field name="latitud" type="float" column="latitud" precision="10" scale="7" nullable="true"/>
+    <field name="longitud" type="float" column="longitud" precision="10" scale="7" nullable="true"/>
     <field name="preferencia" type="integer" column="preferencia" nullable="true">
       <options>
         <option name="unsigned"/>

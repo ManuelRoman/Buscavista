@@ -26,6 +26,16 @@ class Entrada
      * @var string
      */
     private $imagen1;
+    
+    /**
+     * @var float
+     */
+    private $latitud;
+    
+    /**
+     * @var float
+     */
+    private $longitud;
 
     /**
      * @var integer
@@ -113,6 +123,54 @@ class Entrada
     public function getImagen1()
     {
         return $this->imagen1;
+    }
+    
+    /**
+     * Set latitud
+     *
+     * @param float $latitud
+     *
+     * @return Entrada
+     */
+    public function setLatitud($latitud)
+    {
+        $this->latitud = $latitud;
+        
+        return $this;
+    }
+    
+    /**
+     * Get latitud
+     *
+     * @return float
+     */
+    public function getLatitud()
+    {
+        return $this->latitud;
+    }
+    
+    /**
+     * Set longitud
+     *
+     * @param float $longitud
+     *
+     * @return Entrada
+     */
+    public function setLongitud($longitud)
+    {
+        $this->longitud = $longitud;
+        
+        return $this;
+    }
+    
+    /**
+     * Get longitud
+     *
+     * @return float
+     */
+    public function getLongitud()
+    {
+        return $this->longitud;
     }
 
     /**

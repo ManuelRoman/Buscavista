@@ -47,3 +47,11 @@ editar_admin:
 crear_etiqueta:
     path: /etiqueta/crear
     defaults: { _controller: BuscadorBundle:Etiqueta:crearEtiqueta}
+    
+listar_etiquetas:
+    path: /etiqueta/listar
+    defaults: { _controller: BuscadorBundle:Etiqueta:listarEtiquetas}
+    
+editar_etiqueta:
+    path: /etiqueta/editar/{id}
+    defaults: { _controller: BuscadorBundle:Etiqueta:editarEtiqueta}
