@@ -1,0 +1,14 @@
+BuscadorBundle\Entity\Entrada:
+    properties:
+        longitud:
+            - Type:
+                type: numeric
+                message: "El valor debe ser numérico"
+        latitud:
+            - Type:
+                type: numeric
+                message: "El valor debe ser numérico"
+        preferencia:
+            - Type:
+                type: numeric
+                message: "El valor debe ser numérico"

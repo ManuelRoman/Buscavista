@@ -9,7 +9,7 @@
             <table class="table table-hover">
             {# organización de resultados de acuerdo a lo que viene de la query #}
         		<tr>
-        			<th{% if pagination.isSorted('u.Nombre') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Nombre', 'u.nombre') }}</th>
+        			<th{% if pagination.isSorted('e.Nombre') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Nombre', 'e.nombre') }}</th>
             		<th>Editar</th>
         		</tr>
         		{# cuerpo de la tabla con los resultados obteniéndolos del result del controller #}

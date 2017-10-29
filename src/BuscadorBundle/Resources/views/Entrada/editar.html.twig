@@ -1,0 +1,44 @@
+{% extends "BuscadorBundle::baseAdmin.html.twig" %}
+{% block content %}
+	<div class=row>
+    	<div class="col-md-6 col-md-offset-3">
+            <h2>Editar entrada</h2>
+            {% for message in app.session.flashbag().get('status') %}
+        		<div class="alert alert-success">{{ message }}</div>
+            {% endfor %}
+            <div>
+            	<p>Busque la entrada por el título o seleccionela de la lista</p>
+            	<form action="{{ path("buscar_entrada") }}" method="get">
+            		<div class="form-group">
+              			<input type="text" class="form-control" id="titulo" placeholder="Título de la entrada" name="titulo" required="required">
+           			</div>
+            		<div class="text-center">
+            			<button type="submit" class="btn btn-default" id="reservar">Buscar</button>
+            		</div>
+          		</form><br/>
+            </div>
+            <table class="table table-hover">
+            {# organización de resultados de acuerdo a lo que viene de la query #}
+        		<tr>
+        			<th{% if pagination.isSorted('e.Titulo') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Titulo', 'e.titulo') }}</th>
+            		<th>Editar</th>
+            		<th>Eliminar</th>
+        		</tr>
+        		{# cuerpo de la tabla con los resultados obteniéndolos del result del controller #}
+                {% for entrada in pagination %}
+            	<tr {% if loop.index is odd %}class="color"{% endif %}>
+                	<td>{{ entrada.titulo }}</td>
+                	<td>
+            			<a href="{{ path("editar_entrada", {"id":entrada.id}) }}" class="btn btn-warning">Editar</a>
+            		</td>
+            		<td>
+            			<a href="{{ path("eliminar_entrada", {"id":entrada.id}) }}" class="btn btn-danger">Eliminar</a>
+            		</td>
+            	</tr>
+                {% endfor %}
+        	</table>
+        	{# Muestra botones de navegación #}
+    		<div class="navigation text-center">{{ knp_pagination_render(pagination) }}</div>
+        </div>
+    </div>
+{% endblock %}

@@ -2,6 +2,8 @@
 
 namespace BuscadorBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * Entrada
  */
@@ -42,6 +44,20 @@ class Entrada
      */
     private $preferencia;
 
+    /**
+     * Usada en la relación oneToMany para
+     * la creación de entradas
+     * @var unknown
+     */
+    protected $entradaEtiqueta;
+    
+    /**
+     * Usada en la relación oneToMany para
+     * la creación de entradas
+     */
+    public function  __construct(){
+        $this->entradaEtiqueta = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -196,5 +212,23 @@ class Entrada
     {
         return $this->preferencia;
     }
+    
+    /**
+     * @return the $entradaEtiqueta
+     */
+    public function getEntradaEtiqueta()
+    {
+        return $this->entradaEtiqueta;
+    }
+
+    /**
+     * @param \BuscadorBundle\Entity\unknown $entradaEtiqueta
+     */
+    public function setEntradaEtiqueta(\BuscadorBundle\Entity\Etiqueta $etiqueta)
+    {
+        $this->entradaEtiqueta = $etiqueta;
+        return $this;
+    }
+    
 }
 

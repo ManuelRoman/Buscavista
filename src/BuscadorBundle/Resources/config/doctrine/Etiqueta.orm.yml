@@ -23,4 +23,10 @@ BuscadorBundle\Entity\Etiqueta:
             nullable: true
             options:
                 unsigned: false
+    #Relacion una etiqueta tiene varias entradas, pasando por la entidad intermedia EntradaEtiqueta
+    oneToMany:
+        entradaEtiqueta:
+            targetEntity: EntradaEtiqueta
+            mappedBy: etiqueta
+            cascade: ["persist"]
     lifecycleCallbacks: {  }

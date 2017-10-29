@@ -2,6 +2,8 @@
 
 namespace BuscadorBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * Etiqueta
  */
@@ -21,6 +23,21 @@ class Etiqueta
      * @var integer
      */
     private $estadistica;
+    
+    /**
+     * Usada en la relación oneToMany para
+     * la creación de entradas
+     * @var unknown
+     */
+    protected $entradaEtiqueta;
+    
+    /**
+     * Usada en la relación oneToMany para
+     * la creación de entradas
+     */
+    public function  __construct(){
+        $this->entradaEtiqueta = new ArrayCollection();
+    }
 
 
     /**
@@ -80,5 +97,17 @@ class Etiqueta
     {
         return $this->estadistica;
     }
+    
+    /**
+     * @return the $entradaEtiqueta
+     */
+    public function getEntradaEtiqueta()
+    {
+        return $this->entradaEtiqueta;
+    }
+
+    
+    
+    
 }
 

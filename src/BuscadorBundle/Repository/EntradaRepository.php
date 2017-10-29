@@ -2,6 +2,8 @@
 namespace BuscadorBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use BuscadorBundle\Entity\EntradaEtiqueta;
+use BuscadorBundle\Entity\Etiqueta;
 
 class EntradaRepository extends EntityRepository
 {
@@ -43,7 +45,36 @@ class EntradaRepository extends EntityRepository
          usort($entradas, function($a, $b) {
              return $a->getPreferencia() < $b->getPreferencia();
          });
-         return  $entradas;
+         return $entradas;
+    }
+    
+    public function addEtiquetasEntrada($entrada, $etiquetas){
+        $em=$this->getEntityManager();
+        $etiqueta_repository=$em->getRepository("BuscadorBundle:Etiqueta");
+        
+        //Añadimos las etiquetas nuevas a la bbdd
+        for($i=0; $i<count($etiquetas); $i++) {
+            $etiquetaEntity = $etiqueta_repository->findOneBy(array("nombre"=>$etiquetas[$i]));
+            if ($etiquetaEntity == null){
+                $etiqueta = new Etiqueta();
+                $etiqueta->setNombre($etiquetas[$i]);
+                $etiqueta->setEstadistica(0);
+                $em->persist($etiqueta);
+            }
+        }
+        $em->flush();
+        
+        // Añadimos la relación entre la entrada y las etiquetas
+        for($i=0; $i<count($etiquetas); $i++) {
+            $etiquetaEntity = $etiqueta_repository->findOneBy(array("nombre"=>$etiquetas[$i]));
+            $entradaEtiqueta =  new EntradaEtiqueta();
+            $entradaEtiqueta->setEntrada($entrada);
+            $entradaEtiqueta->setEtiqueta($etiquetaEntity);
+            $em->persist($entradaEtiqueta);
+        }
+        $flush = $em->flush();
+        
+        return $flush;
     }
     
 }

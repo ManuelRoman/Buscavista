@@ -45,4 +45,9 @@ BuscadorBundle\Entity\Entrada:
             nullable: true
             options:
                 unsigned: false
+    oneToMany:
+        entradaEtiqueta:
+            targetEntity: EntradaEtiqueta
+            mappedBy: entrada
+            cascade: ["persist"]
     lifecycleCallbacks: {  }

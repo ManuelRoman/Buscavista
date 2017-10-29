@@ -55,3 +55,23 @@ listar_etiquetas:
 editar_etiqueta:
     path: /etiqueta/editar/{id}
     defaults: { _controller: BuscadorBundle:Etiqueta:editarEtiqueta}
+    
+crear_entrada:
+    path: /entrada/crear
+    defaults: { _controller: BuscadorBundle:Entrada:crearEntrada}
+    
+listar_entradas:
+    path: /entrada/listar
+    defaults: { _controller: BuscadorBundle:Entrada:listarTodasEntradas}
+    
+editar_entrada:
+    path: /entrada/editar/{id}
+    defaults: { _controller: BuscadorBundle:Entrada:editarEntrada}
+    
+eliminar_entrada:
+    path: /entrada/eliminar/{id}
+    defaults: { _controller: BuscadorBundle:Entrada:eliminarEntrada}
+    
+buscar_entrada:
+    path: /entrada/buscar
+    defaults: { _controller: BuscadorBundle:Entrada:buscarEntrada}

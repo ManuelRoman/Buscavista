@@ -1,0 +1,71 @@
+{% extends "BuscadorBundle::baseAdmin.html.twig" %}
+{% block content %}
+	<div class="col-md-6 col-md-offset-3">
+        <h2>Editar entrada</h2>
+        {% for message in app.session.flashbag().get('status') %}
+    		<div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+        <div class="text-center">
+        	<img width="150" src="{{ asset("imagenes/"~imagenEntrada)}}" alt="imagenbbdd"/>
+        </div>
+        {{ form_start(form, {'method':'POST', 'enctype':'multipart/form-data'}) }}
+        	<div>
+                {{ form_label(form.titulo) }}
+                {{ form_errors(form.titulo) }}
+                {{ form_widget(form.titulo) }}
+			</div><br/>
+			<div>
+				<p>Si quiere dejar la misma imagen no seleccione es botón</p>
+                {{ form_label(form.imagen1) }}
+                {{ form_errors(form.imagen1) }}
+                {{ form_widget(form.imagen1) }}
+			</div>
+			<div>
+                {{ form_label(form.contenido) }}
+                {{ form_errors(form.contenido) }}
+                {{ form_widget(form.contenido) }}
+			</div>
+			<div>
+                {{ form_label(form.latitud) }}
+                {{ form_errors(form.latitud) }}
+                {{ form_widget(form.latitud) }}
+			</div>
+			<div>
+                {{ form_label(form.longitud) }}
+                {{ form_errors(form.longitud) }}
+                {{ form_widget(form.longitud) }}
+			</div>
+			<div>
+				{{ form_label(form.etiquetas) }}
+                {{ form_errors(form.etiquetas) }}
+                {{ form_widget(form.etiquetas,{'value':etiquetas} ) }}
+			</div>
+        {{ form_end(form) }}
+    </div>
+    <span id="imagenbbdd" style="display: hidden;" >{{ imagenEntrada }}</span>
+{% endblock %}
+{% block javascripts %}
+	<script>
+		$('input[type=file]').bootstrapFileInput();
+		$('.file-inputs').bootstrapFileInput();
+		$( "#buscadorbundle_entrada_imagen1" ).change(function() {
+			var archivo = $("#buscadorbundle_entrada_imagen1").val().toLowerCase();
+			var extensiones = archivo.substring(archivo.lastIndexOf("."));
+			console.log(extensiones);
+			if(extensiones != ".jpg" && extensiones != ".png" && extensiones != ".bmp")
+			{
+				
+				$(function () {
+	                var dialogId = 'my-dialog-1';
+	                var dialog = new BootstrapDialog({
+	                    id: dialogId,
+	                    title: 'Aviso',
+	                    type: BootstrapDialog.TYPE_WARNING,
+						message: 'La imagen no tiene una extension válido, seleccione una imagen: jpg, png o bmp.'
+	                });
+	                dialog.open();
+	            });
+			}
+		});
+	</script>
+{% endblock %}

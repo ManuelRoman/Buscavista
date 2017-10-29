@@ -23,7 +23,7 @@ BuscadorBundle\Entity\EntradaEtiqueta:
             cascade: {  }
             fetch: EAGER
             mappedBy: null
-            inversedBy: null
+            inversedBy: entradaEtiqueta
             joinColumns:
                 entrada_id:
                     referencedColumnName: id
@@ -33,7 +33,7 @@ BuscadorBundle\Entity\EntradaEtiqueta:
             cascade: {  }
             fetch: EAGER
             mappedBy: null
-            inversedBy: null
+            inversedBy: entradaEtiqueta
             joinColumns:
                 etiqueta_id:
                     referencedColumnName: id

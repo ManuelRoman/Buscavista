@@ -76,16 +76,16 @@ class EtiquetaController extends Controller
         $etiqueta_repository=$em->getRepository("BuscadorBundle:Etiqueta");
         $etiqueta = $etiqueta_repository->find($id);
         
-        //Creamos el formularío y le damos el usuario, nos rellena los campos en la vista
+        //Creamos el formularío y le damos la etiqueta, nos rellena los campos en la vista
         $form = $this->createForm(EtiquetaType::class, $etiqueta);
         
         //Comprobamos los campos, en este caso no hay validation
         $form->handleRequest($request);
         
-        //Si se ha recibido el formulario de editar el administrador
+        //Si se ha recibido el formulario de editar
         if($form->isSubmitted()){
             if($form->isValid()){
-                //cambiamos los campos del administrador
+                //cambiamos los campos
                 $etiqueta->setNombre(strtolower($form->get("nombre")->getData()));
                 $em->persist($etiqueta);
                 $flush = $em->flush();
