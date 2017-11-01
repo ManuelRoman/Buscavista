@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\HttpFoundation\Response;
 
 class BuscarController extends Controller
 {
@@ -87,5 +88,24 @@ class BuscarController extends Controller
         return $this->render('BuscadorBundle:Buscar:entrada.html.twig', array(
             'entrada' => $entrada,
         ));
+    }
+    
+    public function entradaPdfAction(Request $request, $id){
+        $em = $this->getDoctrine()->getManager();
+        $entrada_repository = $em->getRepository("BuscadorBundle:Entrada");
+        $entrada = $entrada_repository->find($id);
+        $pdf = new \FPDF();
+        $projectRoot = $this->get('kernel')->getProjectDir();
+        $pdf->AddPage();
+        $pdf->SetFont('Arial','B',16);
+        $urlImagen = $projectRoot."\\web\\imagenes\\".$entrada->getImagen1();
+        $pdf->Cell(10,10,utf8_decode($entrada->getTitulo()));
+        $pdf->Cell($pdf->Image($urlImagen,75,30,60));
+        $pdf->Ln(80);
+        $pdf->SetFont('Arial','',12);
+        $pdf->MultiCell(0,5,utf8_decode($entrada->getContenido()));
+        
+        return new Response($pdf->Output(), 200, array(
+            'Content-Type' => 'application/pdf'));
     }
 }

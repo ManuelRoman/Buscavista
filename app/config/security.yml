@@ -27,6 +27,13 @@ security:
             logout:
                 path: /logout
                 target: /login
+                
+    access_control:
+        - { path: /admin/inicio, roles: [ROLE_ADMIN, ROLE_SUPER_ADMIN]}
+        - { path: ^/admin, roles: ROLE_SUPER_ADMIN}
+        - { path: ^/mostrar, roles: [ROLE_ADMIN, ROLE_SUPER_ADMIN]}
+        - { path: ^/etiqueta, roles: [ROLE_ADMIN, ROLE_SUPER_ADMIN]}
+        - { path: ^/entrada, roles: [ROLE_ADMIN, ROLE_SUPER_ADMIN]}
             # activate different ways to authenticate
 
             # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate

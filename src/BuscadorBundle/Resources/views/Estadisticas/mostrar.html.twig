@@ -1,0 +1,23 @@
+{% extends "BuscadorBundle::baseAdmin.html.twig" %}
+{% block content %}
+	<div class="row">
+    	<div class="col-md-8 col-md-offset-2">
+        	<div class="text-center"><h3>Las 10 etiquetas más buscadas</h3></div>
+        	<div id="grafica""></div>
+        </div>
+	</div>
+{% endblock %}
+{% block javascripts %}
+<script type="text/javascript">
+Morris.Donut({
+	  element: 'grafica',
+	  data: [
+		{% for etiqueta in etiquetas %}
+			{label: "{{ etiqueta.nombre }}", value: {{ etiqueta.estadistica }}},
+		{% endfor %}
+	    	
+	  ],
+	  resize: true
+	});
+</script>
+{% endblock %}

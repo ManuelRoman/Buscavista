@@ -21,6 +21,7 @@
 {% endblock %}
 {% block javascripts %}
 	<script>
+	$( "#buscadorbundle_entrada_imagen1" ).prop('required',true);
 		$('input[type=file]').bootstrapFileInput();
 		$('.file-inputs').bootstrapFileInput();
 		$( "#buscadorbundle_entrada_imagen1" ).change(function() {

@@ -1,9 +1,5 @@
-buscador_homepage:
-    path:     /
-    defaults: { _controller: BuscadorBundle:Default:index }
-
 buscador_buscar:
-    path:     /buscar
+    path:     /
     defaults: { _controller: BuscadorBundle:Buscar:buscar }
 
 buscador_resultados:
@@ -25,7 +21,7 @@ logout:
     path: /logout
 
 inicio:
-    path: /admin/inicio
+    path: admin/inicio
     defaults: { _controller: BuscadorBundle:Usuario:inicio}
     
 crear_admin:
@@ -75,3 +71,11 @@ eliminar_entrada:
 buscar_entrada:
     path: /entrada/buscar
     defaults: { _controller: BuscadorBundle:Entrada:buscarEntrada}
+    
+pdf_entrada:
+    path: /entrada/pdf/{id}
+    defaults: { _controller: BuscadorBundle:Buscar:entradaPdf}
+    
+mostrar_estadisticas:
+    path: /mostrar/estadisticas
+    defaults: { _controller: BuscadorBundle:Estadisticas:mostrar}
