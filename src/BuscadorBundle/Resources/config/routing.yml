@@ -21,7 +21,7 @@ logout:
     path: /logout
 
 inicio:
-    path: admin/inicio
+    path: /admin/inicio
     defaults: { _controller: BuscadorBundle:Usuario:inicio}
     
 crear_admin:
@@ -73,9 +73,13 @@ buscar_entrada:
     defaults: { _controller: BuscadorBundle:Entrada:buscarEntrada}
     
 pdf_entrada:
-    path: /entrada/pdf/{id}
+    path: /buscar/pdf/{id}
     defaults: { _controller: BuscadorBundle:Buscar:entradaPdf}
     
 mostrar_estadisticas:
     path: /mostrar/estadisticas
     defaults: { _controller: BuscadorBundle:Estadisticas:mostrar}
+    
+enviar_entrada:
+    path: /enviarEntrada
+    defaults: { _controller: BuscadorBundle:Buscar:enviarEntrada}

@@ -80,7 +80,7 @@ class EntradaController extends Controller
         $pagination = $paginator->paginate(
             $query, //origen de los datos
             $request->query->get('page', 1), //número de página por la que empieza
-            3 // límite de resultados por página
+            5 // límite de resultados por página
             );
         return $this->render('BuscadorBundle:Entrada:editar.html.twig', array(
             'pagination' => $pagination

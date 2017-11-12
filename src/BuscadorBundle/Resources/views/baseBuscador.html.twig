@@ -17,10 +17,11 @@
 		<link rel="icon" type="image/x-icon" href="{{ asset("imagenes/favicon.ico") }}" />
 		<!-- Google Maps -->
     	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCy9MAcuZIVtSKPH-ZWLPDK6swlLu2pSSU"></script>
+    	<link href="https://fonts.googleapis.com/css?family=Bitter" rel="stylesheet"> 
 		<style>
 		  body{
 		      /*background-color: #557187;*/
-		   }
+		   	}
 		  .centrar {
             overflow: hidden;
             position: absolute;
@@ -30,18 +31,22 @@
             top: 60%;
             margin-top: -100px;
             margin-left: -150px;
-          }
+          	}
 	      #gmap_canvas img{
     	    max-width:none !important;
         	background:none!important
-		}
+		  	}
+		  #marca{
+		  	font-family: 'Bitter', serif;
+		  	font-size: 5rem;
+		  	}
     	</style>
 	</head>
 	<body onload="cargar_funcion()">
 		<div class="container">
     		<header><br/>
     	        {% block cabecera %}
-  					<div class="text-center"><h1>BuscaVista</h1></div>
+  					<div class="text-center"><h1 id="marca"><a href="{{ path("buscador_buscar") }}">BuscaVista</a></h1></div>
   				{% endblock %}
     		</header>
     		<section id="content">

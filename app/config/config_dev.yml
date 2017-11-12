@@ -39,3 +39,10 @@ monolog:
 
 #swiftmailer:
 #    delivery_addresses: ['me@example.com']
+
+swiftmailer:
+    transport: gmail
+    username:  0@gmail.com
+    password:  
+    spool:
+        type: memory
