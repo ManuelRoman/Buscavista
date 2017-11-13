@@ -93,6 +93,8 @@ class BuscarController extends Controller
             $etiqueta_repository->sumaBusqueda($etiquetasValidas);
         }
         catch(\Doctrine\DBAL\DBALException $e) {
+            //Enviamos un mensaje al log
+            $this->get('logger')->error($e->getMessage());
             return $this->render('error.html.twig');
         }
         finally {
@@ -124,6 +126,8 @@ class BuscarController extends Controller
             $entrada = $entrada_repository->find($id);
         }
         catch(\Doctrine\DBAL\DBALException $e) {
+            //Enviamos un mensaje al log
+            $this->get('logger')->error($e->getMessage());
             return $this->render('error.html.twig');
         }
         finally {
@@ -146,6 +150,8 @@ class BuscarController extends Controller
             $entrada = $entrada_repository->find($id);
         }
         catch(\Doctrine\DBAL\DBALException $e) {
+            //Enviamos un mensaje al log
+            $this->get('logger')->error($e->getMessage());
             return $this->render('error.html.twig');
         }
         finally {
@@ -180,12 +186,14 @@ class BuscarController extends Controller
                 $entrada = $entrada_repository->find($entradaId);
             }
             catch(\Doctrine\DBAL\DBALException $e) {
+                //Enviamos un mensaje al log
+                $this->get('logger')->error($e->getMessage());
                 return $this->render('error.html.twig');
             }
             finally {
                 $em->close();
             }
-            $enviado_por='0@gmail.com';
+            $enviado_por='o0@gmail.com';
             $enviado_para=$correo;
             $message = \Swift_Message::newInstance()
             ->setSubject('Información solicitada')
