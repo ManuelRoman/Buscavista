@@ -1,3 +1,4 @@
+{#Página que muestra la gráfica de las estadísticas#}
 {% extends "BuscadorBundle::baseAdmin.html.twig" %}
 {% block content %}
 	<div class="row">
@@ -9,9 +10,11 @@
 {% endblock %}
 {% block javascripts %}
 <script type="text/javascript">
+//Función de creación de la gráfica
 Morris.Donut({
 	  element: 'grafica',
 	  data: [
+		 //Recorremos la lista de etiquetas y le pasamos los valores
 		{% for etiqueta in etiquetas %}
 			{label: "{{ etiqueta.nombre }}", value: {{ etiqueta.estadistica }}},
 		{% endfor %}

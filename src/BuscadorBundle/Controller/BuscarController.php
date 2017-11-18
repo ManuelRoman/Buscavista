@@ -79,7 +79,7 @@ class BuscarController extends Controller
             $entrada_repository = $em->getRepository("BuscadorBundle:Entrada");
             $etiqueta_repository = $em->getRepository("BuscadorBundle:Etiqueta");
             //Convertimos el string recibido en un array
-            $etiquetas = explode(" ", strtolower($datos["terminos"]));
+            $etiquetas = explode(" ", mb_strtolower($datos["terminos"]));
             $etiquetasValidas = [];
             //Eliminamos los elementos ed menos de dos carácteres
             for($i=0; $i<count($etiquetas); $i++) {

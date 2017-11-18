@@ -8,6 +8,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
+/**
+ * Clase que se usa para crear el formulario de las Etiquetas
+ */
 class EtiquetaType extends AbstractType
 {
     /**

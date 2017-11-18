@@ -5,7 +5,7 @@ namespace BuscadorBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * Entrada
+ * Clase que se usa para persistir en la base de datos la Entrada
  */
 class Entrada
 {

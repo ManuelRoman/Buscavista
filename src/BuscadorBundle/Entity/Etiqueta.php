@@ -5,7 +5,7 @@ namespace BuscadorBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * Etiqueta
+ * Clase que se usa para persistir en la base de datos la Etiqueta
  */
 class Etiqueta
 {

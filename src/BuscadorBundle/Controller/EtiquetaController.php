@@ -38,7 +38,7 @@ class EtiquetaController extends Controller
                     $etiqueta = $etiqueta_repositorio->findOneBy(array("nombre"=>$form->get("nombre")->getData()));
                     if(count($etiqueta)==0){
                         $etiqueta = new Etiqueta();
-                        $etiqueta->setNombre(strtolower($form->get("nombre")->getData()));
+                        $etiqueta->setNombre(mb_strtolower($form->get("nombre")->getData()));
                         $etiqueta->setEstadistica(0);
                         
                         $em->persist($etiqueta);

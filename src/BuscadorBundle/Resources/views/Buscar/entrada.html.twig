@@ -4,6 +4,7 @@
 	<div class="row"><div class="col"><br/></div></div>
 	<div class="row">
     	<div class="col">
+    		{#Mostramos el mensaje su hubiera alguno#}
     		{% for message in app.session.flashbag().get('status') %}
     			<div class="alert alert-success">{{ message }}</div>
             {% endfor %}
@@ -16,6 +17,7 @@
     </div>
     <div class="row">
     	<div class="col-md-6 col-md-offset-3">
+    		<!-- Google Maps -->
     		<div id='gmap_canvas' style='height:350px;width:100%;'></div>
     	</div>
     </div>

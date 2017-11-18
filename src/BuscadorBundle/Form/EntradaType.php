@@ -10,6 +10,9 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
+/**
+ * Clase que se usa para crear el formulario de las Entradas
+ */
 class EntradaType extends AbstractType
 {
     /**
@@ -53,7 +56,8 @@ class EntradaType extends AbstractType
                 "mapped" => false,
                 "label"=>"Etiquetas:",
                 "required"=>"required",
-                "attr" => array("class" =>"form-name form-control"))
+                "attr" => array("class" =>"form-name form-control",
+                                "placeholder"=>"Escriba las etiquetas separadas sólo por espacios"))
                  )
              ->add('preferencia', TextType::class, array(
                 "label"=>"Preferencia",

@@ -10,6 +10,9 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
+/**
+ * Clase que se usa para crear el formulario de los usuarios
+ */
 class UsuarioType extends AbstractType
 {
     /**

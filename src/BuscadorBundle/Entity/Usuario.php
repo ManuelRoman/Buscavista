@@ -4,7 +4,7 @@ namespace BuscadorBundle\Entity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * Usuario
+ * Clase que se usa para persistir en la base de datos el Usuario
  */
 class Usuario implements UserInterface
 {

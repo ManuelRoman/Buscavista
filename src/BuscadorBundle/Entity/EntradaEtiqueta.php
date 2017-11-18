@@ -3,7 +3,7 @@
 namespace BuscadorBundle\Entity;
 
 /**
- * EntradaEtiqueta
+ * Clase que se usa para persistir en la base de datos la EntradaEtiqueta
  */
 class EntradaEtiqueta
 {

@@ -1,20 +1,23 @@
+{#Página que usa la función con paginador#}
 {% extends "BuscadorBundle::baseBuscador.html.twig" %}
 {% block title %} BuscaVista - Resultados {% endblock %}
 {% block content %}
 	<div class=row>
     	<div class="col-md-8 col-md-offset-2">
+    		{#Mostramos el mensaje su hubiera alguno#}
             {% for message in app.session.flashbag().get('status') %}
         		<div class="alert alert-success">{{ message }}</div>
             {% endfor %}
             {% if pagination.getTotalItemCount > 0 %}
-                {# total items count #}
                 <span class="text-center">
             		<div class="count">
                 		<span class="label label-primary">
+                			{# Muestra el total de resultados #}
                     		Se han encontrado: {{ pagination.getTotalItemCount }} resultado(s)
                 		</span>
             		</div>
         		</span><br/>
+        		{#Muestra las entradas#}
                 {% for entrada in pagination %}
                 	<div>
                			<a href="{{ path("buscador_entrada", {"id":entrada.id}) }}">{{ entrada.titulo }}</a>

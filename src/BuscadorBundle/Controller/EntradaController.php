@@ -57,7 +57,7 @@ class EntradaController extends Controller
                     $flush = $em->flush();
                     
                     //Guardamos las etiquetas de la entrada
-                    $etiquetas = explode(" ", strtolower($form->get("etiquetas")->getData()));
+                    $etiquetas = explode(" ", mb_strtolower($form->get("etiquetas")->getData()));
                     $etiquetasValidas = [];
                     for($i=0; $i<count($etiquetas); $i++) {
                         if (strlen($etiquetas[$i]) >2){
@@ -73,8 +73,7 @@ class EntradaController extends Controller
                     $this->session->getFlashBag()->add("status", "Hay un problema con la base de datos, intentelo más tarde.");
                     //Se redirige al incio al administrador
                     return $this->redirectToRoute("inicio");
-                }
-                finally {
+                } finally {
                     //Cerramos el EntityManager
                     $em->close();
                 }
@@ -203,7 +202,7 @@ class EntradaController extends Controller
                     }
                     
                     //Guardamos las etiquetas de la entrada
-                    $etiquetas = explode(" ", strtolower($form->get("etiquetas")->getData()));
+                    $etiquetas = explode(" ", mb_strtolower($form->get("etiquetas")->getData()));
                     $etiquetasValidas = [];
                     for($i=0; $i<count($etiquetas); $i++) {
                         if (strlen($etiquetas[$i]) >2){
@@ -255,6 +254,9 @@ class EntradaController extends Controller
             $entrada_repository=$em->getRepository("BuscadorBundle:Entrada");
             $entradaEtiqueta_repository = $em->getRepository("BuscadorBundle:EntradaEtiqueta");
             $entrada = $entrada_repository->find($id);
+            //Borramos la imagen
+            $imagen=$entrada->getImagen1();
+            unlink("imagenes/".$imagen);
             //Hay que eliminar las entradasEtiquetas asociadas a las entradas, ya que hay una clave ajena
             $entradaEtiquetas = $entradaEtiqueta_repository->findBy(array("entrada"=>$entrada));
             foreach ($entradaEtiquetas as $et){
